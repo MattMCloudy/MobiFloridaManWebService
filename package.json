@@ -1,0 +1,11 @@
+{
+  "name": "florida_man_web",
+  "version": "1.0.0",
+  "description": "a web service to get a tweet from florida man",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Matt McLeod",
+  "license": "ISC"
+}
