@@ -1,5 +1,5 @@
 const awsServerlessExpress = require('aws-serverless-express');
-const app = require('./app')
+const app = require('./app/app')
 
 //These are just to avoid errors moving between serverless express and API Gateway
 const binaryMimeTypes = [
@@ -22,6 +22,5 @@ const binaryMimeTypes = [
     'text/xml'
   ]
   const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes)
-  
   exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context)
   

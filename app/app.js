@@ -21,14 +21,15 @@ const client = new Twitter({
 });
 
 app.get('/', (req, res) => {
-  res.render('index', {
-    apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}/${req.apiGateway.event.requestContext.stage}` : 'http://localhost:3000'
-  });
+  res.render('index');
 })
 
 app.get('/FloridaMan', (req, res) => {
     client.get('statuses/user_timeline', {screen_name: '@_FloridaMan'}, (error, tweets, response) => {
-        if(!error)
-            console.log(tweets);
-    })
+        if(!error) {
+            res.send(tweets);
+        }
+    });
 })
+
+module.exports = app;
