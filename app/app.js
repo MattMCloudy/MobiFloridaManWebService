@@ -1,13 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const compression = require('compression');
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
 const Twitter = require('twitter');
 const app = express();
 
 app.set('view engine', 'pug');
-app.use(compression());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,10 +19,14 @@ const client = new Twitter({
 });
 
 app.get('/', (req, res) => {
+    res.render('index');
+})
+
+app.get('/MobiFloridaManWebService', (req, res) => {
   res.render('index');
 })
 
-app.get('/FloridaMan', (req, res) => {
+app.get('/MobiFloridaManWebService/FloridaMan', (req, res) => {
     client.get('statuses/user_timeline', {screen_name: '@_FloridaMan'}, (error, tweets, response) => {
         if(!error) {
             res.send(tweets);
